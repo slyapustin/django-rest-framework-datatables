@@ -30,8 +30,8 @@ def get_album_options():
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('rank')
     serializer_class = AlbumSerializer
-    filter_backends = (django_filters_drf_filters.DjangoFilterBackend, )
     filterset_class = CustomAlbumFilter
+    filter_backends = (DatatablesFilterBackend,)
 
     def get_options(self):
         return get_album_options()
