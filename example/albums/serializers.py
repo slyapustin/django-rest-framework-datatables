@@ -21,6 +21,7 @@ class AlbumSerializer(serializers.ModelSerializer):
     # DRF-Datatables can deal with nested serializers as well.
     artist = ArtistSerializer()
     genres = serializers.SerializerMethodField()
+    created_on = serializers.DateTimeField(format='%m/%d/%Y')
 
     def get_genres(self, album):
         return ', '.join([str(genre) for genre in album.genres.all()])
@@ -41,7 +42,7 @@ class AlbumSerializer(serializers.ModelSerializer):
         model = Album
         fields = (
             'DT_RowId', 'DT_RowAttr', 'rank', 'name',
-            'year', 'artist_name', 'genres', 'artist',
+            'year', 'artist_name', 'genres', 'artist', 'created_on'
         )
 
 

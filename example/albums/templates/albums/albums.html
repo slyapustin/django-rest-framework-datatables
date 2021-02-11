@@ -25,8 +25,19 @@
                     <th>Album name</th>
                     <th>Year</th>
                     <th>Genres</th>
+                    <th>Created On</th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th>Rank</th>
+                    <th>Artist</th>
+                    <th>Album name</th>
+                    <th>Year</th>
+                    <th>Genres</th>
+                    <th>Created On</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -112,7 +123,25 @@ $(document).ready(function() {
             {"data": "name"},
             {"data": "year"},
             {"data": "genres", "name": "genres.name", "sortable": false},
-        ]
+            {"data": "created_on", "sortable": true},
+        ],
+        "initComplete": function () {
+                // Apply the search
+                this.api().columns().every(function () {
+                    let that = this;
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            },
+    });
+    $('#albums_by_decade tfoot th').each(function () {
+      let title = $(this).text();
+      $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
     $('.btn-decade').on('click', function() {
         table.columns().search('');

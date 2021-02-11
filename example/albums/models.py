@@ -40,6 +40,7 @@ class Album(models.Model):
         verbose_name='Genres',
         related_name='albums'
     )
+    created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Album'
