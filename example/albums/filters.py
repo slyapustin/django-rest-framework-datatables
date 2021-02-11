@@ -8,7 +8,7 @@ class GlobalDateFilter(GlobalFilter, filters.DateFilter):
     pass
 
 
-class AlbumGlobalFilter(filters.FilterSet):
+class CustomAlbumGlobalFilter(filters.FilterSet):
     created_on = GlobalDateFilter(field_name="created_on__date", lookup_expr='exact')
 
     class Meta:
@@ -16,7 +16,7 @@ class AlbumGlobalFilter(filters.FilterSet):
         fields = ['created_on']
 
 
-class AlbumFilter(filters.FilterSet):
+class CustomAlbumFilter(filters.FilterSet):
     created_on = filters.DateFilter(field_name="created_on__date", lookup_expr='exact')
 
     class Meta:

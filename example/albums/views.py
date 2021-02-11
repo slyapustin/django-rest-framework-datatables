@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django_filters import widgets, fields, filters, NumberFilter, CharFilter
+from django_filters import rest_framework as django_filters_drf_filters
 
 from rest_framework import viewsets, status
 from rest_framework import generics
@@ -10,6 +11,7 @@ from rest_framework_datatables import pagination as dt_pagination
 from rest_framework_datatables.django_filters.filterset import DatatablesFilterSet
 from rest_framework_datatables.django_filters.backends import DatatablesFilterBackend
 
+from .filters import CustomAlbumGlobalFilter, CustomAlbumFilter
 from .models import Album, Artist, Genre
 from .serializers import AlbumSerializer, ArtistSerializer
 
@@ -28,6 +30,8 @@ def get_album_options():
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('rank')
     serializer_class = AlbumSerializer
+    filter_backends = (django_filters_drf_filters.DjangoFilterBackend, )
+    filterset_class = CustomAlbumFilter
 
     def get_options(self):
         return get_album_options()
