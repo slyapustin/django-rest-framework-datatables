@@ -8,9 +8,9 @@ class DatatablesFilterSet(FilterSet):
 
     """
 
-    def __init__(self, data=None, queryset=None, *, request=None, prefix=None,
+    def __init__(self, data=None, queryset=None, request=None, prefix=None,
                  datatables_query=None):
-        super().__init__(data=data, queryset=queryset,
+        super(DatatablesFilterSet, self).__init__(data=data, queryset=queryset,
                          request=request, prefix=prefix)
         self.datatables_query = datatables_query
         self._propagate_datatables_query()

@@ -58,7 +58,7 @@ class DatatablesFilterBackend(filters.DatatablesBaseFilterBackend,
         }
 
     def parse_datatables_query(self, request, view):
-        query = super().parse_datatables_query(request, view)
+        query = super(DatatablesFilterBackend, self).parse_datatables_query(request, view)
         form_fields = {}
         field_queries = {}
         for f in query['fields']:
@@ -84,7 +84,7 @@ class DatatablesFilterBackend(filters.DatatablesBaseFilterBackend,
             if field['data'] in filterset.filters:
                 filter = filterset.filters[field['data']]
                 lookup = '__'.join(
-                    f'{filter.field_name}__{filter.lookup_expr}'
+                    '{}__{}'.format(filter.field_name, filter.lookup_expr)
                     .split('__')
                     [:-1])
                 ret.append(('-' if dir_ == 'desc' else '')
