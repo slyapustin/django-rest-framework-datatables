@@ -1,0 +1,8 @@
+coverage==4.5.1
+Django==1.11.29
+djangorestframework==3.9.4
+pycodestyle>=2.3
+#django-filter==2.0
+git+https://github.com/slyapustin/django-filter.git@2.0.0-python2
+#djangorestframework-datatables==0.6
+git+https://github.com/slyapustin/django-rest-framework-datatables.git@python2-backport
