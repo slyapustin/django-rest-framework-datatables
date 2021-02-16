@@ -9,10 +9,10 @@ class SwitchRegexFilter(object):
       'exact': 'regex',
     }
 
-    def __init__(self, field_name=None, lookup_expr='exact', *, label=None,
+    def __init__(self, field_name=None, lookup_expr='exact', label=None,
                  method=None, distinct=False, exclude=False, **kwargs):
         self._original_lookup_expr = lookup_expr
-        super().__init__(
+        super(SwitchRegexFilter, self).__init__(
             field_name=field_name, lookup_expr=lookup_expr, label=label,
             method=method, distinct=distinct, exclude=exclude, **kwargs)
 

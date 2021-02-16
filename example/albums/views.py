@@ -67,7 +67,7 @@ class YADCFMultipleChoiceWidget(widgets.QueryArrayWidget):
         vals = data[name].split("|")
         new_data = data.copy()
         new_data[name] = vals
-        return super().value_from_datadict(new_data, files, name)
+        return super(YADCFMultipleChoiceWidget, self).value_from_datadict(new_data, files, name)
 
 
 class YADCFModelMultipleChoiceField(fields.ModelMultipleChoiceField):
